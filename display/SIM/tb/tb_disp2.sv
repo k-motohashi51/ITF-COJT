@@ -29,7 +29,9 @@ localparam P_RESOL_XGA  = 2'b01;
 localparam P_RESOL_SXGA = 2'b10;
 
 /* シミュレーションする解像度の設定（ここを切り替えて再度シミュレーションする） */
-localparam SIM_RESOL = P_RESOL_VGA;
+// localparam SIM_RESOL = P_RESOL_VGA;
+// localparam SIM_RESOL = P_RESOL_XGA;
+localparam SIM_RESOL = P_RESOL_SXGA;
 
 /* 解像度に応じて総画素数や画像ファイルを切り替える */
 localparam PIX_NUMBER   = (SIM_RESOL == P_RESOL_VGA) ? 640*480: (SIM_RESOL == P_RESOL_XGA) ? 1024*768: 1280*1024;
