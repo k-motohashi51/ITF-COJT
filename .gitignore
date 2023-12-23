@@ -1,3 +1,4 @@
+#######################################
 # common
 
 *.wcfg
@@ -11,5 +12,15 @@ display/display*
 
 display/SIM/sim_*
 !display/SIM/sim_*.tcl
+
+#######################################
+# capture
+
+capture/capture*
+!capture/capture*.tcl
+!capture/capture*.xdc
+
+capture/SIM/sim_*
+!capture/SIM/sim_*.tcl
 
 #######################################
