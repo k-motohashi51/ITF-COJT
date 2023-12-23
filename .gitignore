@@ -1,0 +1,3 @@
+display/SIM/sim_*
+!display/SIM/sim_*.tcl
+!display/SIM/sim_*.xpr
