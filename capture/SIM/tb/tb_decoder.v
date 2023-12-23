@@ -34,14 +34,17 @@ localparam P_RESOL_XGA  = 2'b01;
 localparam P_RESOL_SXGA = 2'b10;
 
 /* シミュレーションする解像度の設定（ここを切り替えて再度シミュレーションする） */
-localparam SIM_RESOL = P_RESOL_VGA;
+//localparam SIM_RESOL = P_RESOL_VGA;
+//localparam SIM_RESOL = P_RESOL_XGA;
+localparam SIM_RESOL = P_RESOL_SXGA;
 
 /* 最初にマクロ定義を未定義にしておく */
 `undef CAM_INCR
 `undef CAM_PICT
 
 /* ここのマクロ定義を変更してカメラモデルを切り替えてシミュレーションしてみる */
-`define CAM_INCR  // CAM_INCR: インクリメントタイプ(camera.v)、CAM_PICT: 実写画像(camera2.v)
+// `define CAM_INCR  // CAM_INCR: インクリメントタイプ(camera.v)、CAM_PICT: 実写画像(camera2.v)
+`define CAM_PICT
 
 /* カメラモデル接続 */
 reg CAM_ENABLE;

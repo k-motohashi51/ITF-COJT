@@ -100,8 +100,8 @@ always @(posedge PCLK) begin
 end
 
 // 画像の垂直カウンタの範囲設定 (XGAだけはSXGAのトリミング)
-assign vcnt_start = (RESOL == 2'd0) ? 12'd0,
-                  : (RESOL == 2'd1) ? 12'd256,
+assign vcnt_start = (RESOL == 2'd0) ? 12'd0
+                  : (RESOL == 2'd1) ? 12'd256
                   : 12'd0;
 
 assign vcnt_end = (RESOL == 2'd0) ? HEIGHT_VGA + HEIGHT_VGA
@@ -122,17 +122,17 @@ localparam  LSB_U0 = 2'b00,
 reg [7:0] u0, y0, v0, y1;
 
 always @(posedge PCLK) begin
-  if (PRST || vsync_posedge) begin
+  if (PRST || vsync_ff) begin
     u0 <= 8'd0;  
     y0 <= 8'd0;  
     v0 <= 8'd0;  
     y1 <= 8'd0;  
   end else if (CAPON) begin
     case (hcnt[1:0])
-      LSB_U0: u0 <= camdata_posedge;
-      LSB_Y0: y0 <= camdata_posedge;
-      LSB_V0: v0 <= camdata_posedge;
-      LSB_Y1: y1 <= camdata_posedge;
+      LSB_U0: u0 <= camdata_ff;
+      LSB_Y0: y0 <= camdata_ff;
+      LSB_V0: v0 <= camdata_ff;
+      LSB_Y1: y1 <= camdata_ff;
     endcase
   end
 end

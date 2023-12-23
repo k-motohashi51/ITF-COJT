@@ -19,21 +19,21 @@ module cap_vramctrl (
   output              WLAST,
 
   // AXI: Bチャネル
-  input       [1:0]   BRESP
+  input       [1:0]   BRESP,
   input               BVALID,
   output              BREADY,
 
   // FIFO
   input       [47:0]  FIFO_DOUT,
   input       [10:0]  FIFO_DATA_CNT,
-  output              FIFO_RD,
+  output              FIFO_RD
 );
 
 /*******************************************************************/
 /* 必要なregやwireの宣言 */
 
 // 1トランザクションで転送するデータの合計バイト数
-localparam  BYTE_PER_BURST = 32'd128; // 8 byte * 16 burst
+localparam  BYTE_PER_BURST = 32'd256; // 8 byte * 16 burst
 
 // AWチャネルステートマシンの状態
 localparam  S_AW_IDLE     = 2'b00,

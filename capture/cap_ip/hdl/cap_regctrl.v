@@ -46,6 +46,12 @@ wire  is_capctrl_reg    = (is_capture_block && WRADDR[11:2] == 10'd1);
 wire  is_capint_reg     = (is_capture_block && WRADDR[11:2] == 10'd2);
 wire  is_capfifo_reg    = (is_capture_block && WRADDR[11:2] == 10'd3);
 
+// 各種レジスタの信号を定義
+reg CBLANK;
+reg INTENBL;
+reg FIFOOVER;
+reg FIFOUNDER;
+
 /*******************************************************************/
 /* CAPADDRレジスタ */
 
@@ -66,7 +72,7 @@ end
 always @(posedge ACLK) begin
   if (ARST) begin
     CBLANK <= 1'b0;
-  end else if (V_NEGEDGE) begin
+  end else if (vsync_neg) begin
     CBLANK <= 1'b1;
   end else if (is_capctrl_reg && BYTEEN[0] && WDATA[1]) begin
     CBLANK <= 1'b0;        
@@ -135,7 +141,7 @@ end
 always @(posedge ACLK) begin
   if (ARST) begin
     CAP_IRQ <= 1'b0;
-  end else if (INTENBL && V_NEGEDGE) begin
+  end else if (INTENBL && vsync_neg) begin
     CAP_IRQ <= 1'b1;
   end else if (is_capint_reg && WDATA[1]) begin
     CAP_IRQ <= 1'b0;

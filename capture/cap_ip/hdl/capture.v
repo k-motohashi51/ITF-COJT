@@ -112,7 +112,7 @@ assign CAP_FIFO_UNDER = 1'b0;   // LED[2]
 /*******************************************************************/
 /* AXIêMçÜÇÃèâä˙âª */
 
-assign M_AXI_AWLEN   = 8'd15;   // 16 burst
+assign M_AXI_AWLEN   = 8'd31;   // 32 burst
 assign M_AXI_AWSIZE  = 3'b011;  // 8 byte
 
 // à»â∫ÅCCOJTÇ≈ÇÕå≈íË
@@ -148,7 +148,7 @@ assign M_AXI_RREADY  = 1'd0;
 reg [1:0] arst_ff;
 
 always @(posedge ACLK) begin
-  arst_ff <= {arst_ff[0], ~ARESETN}
+  arst_ff <= {arst_ff[0], ~ARESETN};
 end
 
 wire ARST = arst_ff[1];
@@ -224,7 +224,7 @@ cap_vramctrl cap_vramctrl (
   .BREADY (M_AXI_BREADY),         // out
   .FIFO_DOUT (fifo_dout),         // in
   .FIFO_DATA_CNT (fifo_data_cnt), // in
-  .FIFO_RD (fifo_rd),             // out
+  .FIFO_RD (fifo_rd)              // out
 );
 
 /*******************************************************************/
